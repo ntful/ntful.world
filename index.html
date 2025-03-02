@@ -1,50 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Country Map</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist World Map</title>
 
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
 
-  <style>
-    #map {
-      height: 500px;
-      width: 100%;
-    }
-  </style>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 
-  <h1>Simple Map Showing Countries</h1>
+    <h1>Minimalist Map (Countries & Cities Only)</h1>
+    <div id="map"></div>
 
-  <!-- Div where the map will appear -->
-  <div id="map"></div>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map at world level
+        var map = L.map('map').setView([20, 0], 2); 
 
-  <script>
-    // Initialize the map with a low zoom level to view countries (you can adjust this based on your needs)
-    var map = L.map('map').setView([20, 0], 2); // Set a center (around the world) and a global zoom level
+        // Use a minimalist tile layer (No Boundaries, Just Country Labels)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://carto.com/">CartoDB</a> contributors'
+        }).addTo(map);
 
-    // Add a tile layer (simple world map with minimal detail)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+        // Overlay a transparent tile layer with country labels only
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://carto.com/">CartoDB</a> contributors'
+        }).addTo(map);
 
-    // Optional: Add country boundaries using GeoJSON (this will give you the outlines of countries)
-    var countryBoundaries = "https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/world-geojson.json";
-    
-    fetch(countryBoundaries)
-      .then(response => response.json())
-      .then(data => {
-        L.geoJSON(data).addTo(map); // Add country borders to the map
-      });
-  </script>
+    </script>
 
 </body>
 </html>
-
-
