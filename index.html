@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interactive Map</title>
-  
+  <title>Simple Country Map</title>
+
   <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
   <style>
     #map {
@@ -17,28 +17,34 @@
 </head>
 <body>
 
-  <h1>Interactive Map</h1>
-  
+  <h1>Simple Map Showing Countries</h1>
+
+  <!-- Div where the map will appear -->
   <div id="map"></div>
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-  
-  <script>
-    // Create map
-    var map = L.map('map').setView([51.505, -0.09], 13);  // Set initial view (latitude, longitude)
 
-    // Add tile layer (OpenStreetMap)
+  <script>
+    // Initialize the map with a low zoom level to view countries (you can adjust this based on your needs)
+    var map = L.map('map').setView([20, 0], 2); // Set a center (around the world) and a global zoom level
+
+    // Add a tile layer (simple world map with minimal detail)
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Add a marker
-    L.marker([51.5, -0.09]).addTo(map)
-      .bindPopup('<b>Hello world!</b><br />I am a popup.')
-      .openPopup();
+    // Optional: Add country boundaries using GeoJSON (this will give you the outlines of countries)
+    var countryBoundaries = "https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/world-geojson.json";
+    
+    fetch(countryBoundaries)
+      .then(response => response.json())
+      .then(data => {
+        L.geoJSON(data).addTo(map); // Add country borders to the map
+      });
   </script>
 
 </body>
 </html>
+
 
