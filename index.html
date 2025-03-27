@@ -1,43 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimalist World Map</title>
-
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
-
-    <style>
-        #map {
-            height: 500px;
-            width: 100%;
-        }
-    </style>
+<script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>		
+<script  type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
 </head>
 <body>
 
-    <h1>Minimalist Map (Countries & Cities Only)</h1>
-    <div id="map"></div>
-
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-
-    <script>
-        // Initialize the map at world level
-        var map = L.map('map').setView([20, 0], 2); 
-
-        // Use a minimalist tile layer (No Boundaries, Just Country Labels)
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://carto.com/">CartoDB</a> contributors'
-        }).addTo(map);
-
-        // Overlay a transparent tile layer with country labels only
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://carto.com/">CartoDB</a> contributors'
-        }).addTo(map);
-
-    </script>
 
 </body>
 </html>
