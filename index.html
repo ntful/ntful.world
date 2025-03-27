@@ -3,6 +3,25 @@
 <head>
 <script type="text/javascript" src="mapdata1.js"></script>		
 <script  type="text/javascript" src="worldmap1.js"></script>
+  <style>
+        /* Set margin and padding to 0 for full height */
+        html, body {
+            height: 100%;  /* Ensure full height */
+            margin: 0;
+            padding: 0;
+            display: flex; /* Use Flexbox for layout */
+            flex-direction: column; /* Align elements vertically */
+        }
+        
+        /* Your main content styling */
+        .content {
+            flex: 1;  /* Take up remaining space */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+    </style>
 </head>
 <body>
 <div id="map"></div>
